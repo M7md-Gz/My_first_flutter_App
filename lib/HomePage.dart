@@ -2,15 +2,48 @@ import 'package:app6/ItemDatels.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-class Homepage extends StatelessWidget {
+class Homepage extends StatefulWidget {
+  @override
+  State<Homepage> createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
+  late ScrollController scrollController;
+bool asattop=true;
+  @override
+  void initState() {
+    scrollController=ScrollController();
+    scrollController.addListener((){
+      if(scrollController.offset<=700){
+      if(!asattop){
+        setState(() {
+          asattop=true;
+        });
+      }}else{
+        if (asattop) {
+          setState(() {
+            asattop = false;
+          });
+        }}
+    });
+    super.initState();
+  }
+@override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   GlobalKey<ScaffoldState> search = GlobalKey();
+
   List categore = [
     {"iconname": Icons.person_outline, "title": "men"},
     {"iconname": Icons.computer, "title": "Computer"},
     {"iconname": Icons.mobile_screen_share, "title": "Mobile"},
     {"iconname": Icons.electric_car, "title": "For car"},
   ];
+
   List selling = [
     {
       "image":
@@ -25,9 +58,110 @@ class Homepage extends StatelessWidget {
       "subtitle": "اكسسوارات",
       "price": "199.99 SAR",
     },
+    {
+      "image":
+      "assets/ezgif-7-40cb3e706e-68529-0-210924014855860-removebg-preview.png",
+      "title": " سماعات راس",
+      "subtitle": " اكسسوارات ",
+      "price": "40 SAR   ",
+    },
+    {
+      "image":
+      "assets/ezgif-7-40cb3e706e-68529-0-210924014855860-removebg-preview.png",
+      "title": " سماعات راس",
+      "subtitle": " اكسسوارات ",
+      "price": "40 SAR   ",
+    },
+    {
+      "image":
+      "assets/ezgif-7-40cb3e706e-68529-0-210924014855860-removebg-preview.png",
+      "title": " سماعات راس",
+      "subtitle": " اكسسوارات ",
+      "price": "40 SAR   ",
+    },
+    {
+      "image":
+      "assets/ezgif-7-40cb3e706e-68529-0-210924014855860-removebg-preview.png",
+      "title": " سماعات راس",
+      "subtitle": " اكسسوارات ",
+      "price": "40 SAR   ",
+    },
+    {
+      "image":
+      "assets/ezgif-7-40cb3e706e-68529-0-210924014855860-removebg-preview.png",
+      "title": " سماعات راس",
+      "subtitle": " اكسسوارات ",
+      "price": "40 SAR   ",
+    },
+    {
+      "image":
+      "assets/ezgif-7-40cb3e706e-68529-0-210924014855860-removebg-preview.png",
+      "title": " سماعات راس",
+      "subtitle": " اكسسوارات ",
+      "price": "40 SAR   ",
+    },
+    {
+      "image":
+      "assets/ezgif-7-40cb3e706e-68529-0-210924014855860-removebg-preview.png",
+      "title": " سماعات راس",
+      "subtitle": " اكسسوارات ",
+      "price": "40 SAR   ",
+    },
+    {
+      "image":
+      "assets/ezgif-7-40cb3e706e-68529-0-210924014855860-removebg-preview.png",
+      "title": " سماعات راس",
+      "subtitle": " اكسسوارات ",
+      "price": "40 SAR   ",
+    },
+    {
+      "image":
+      "assets/ezgif-7-40cb3e706e-68529-0-210924014855860-removebg-preview.png",
+      "title": " سماعات راس",
+      "subtitle": " اكسسوارات ",
+      "price": "40 SAR   ",
+    },
+    {
+      "image":
+      "assets/ezgif-7-40cb3e706e-68529-0-210924014855860-removebg-preview.png",
+      "title": " سماعات راس",
+      "subtitle": " اكسسوارات ",
+      "price": "40 SAR   ",
+    },
+    {
+      "image":
+      "assets/ezgif-7-40cb3e706e-68529-0-210924014855860-removebg-preview.png",
+      "title": " سماعات راس",
+      "subtitle": " اكسسوارات ",
+      "price": "40 SAR   ",
+    },
+    {
+      "image":
+      "assets/ezgif-7-40cb3e706e-68529-0-210924014855860-removebg-preview.png",
+      "title": " سماعات راس",
+      "subtitle": " اكسسوارات ",
+      "price": "40 SAR   ",
+    },
+    {
+      "image":
+      "assets/ezgif-7-40cb3e706e-68529-0-210924014855860-removebg-preview.png",
+      "title": " سماعات راس",
+      "subtitle": " اكسسوارات ",
+      "price": "40 SAR   ",
+    },
+    {
+      "image":
+      "assets/ezgif-7-40cb3e706e-68529-0-210924014855860-removebg-preview.png",
+      "title": " سماعات راس",
+      "subtitle": " اكسسوارات ",
+      "price": "40 SAR   ",
+    },
+
   ];
+
   @override
   Widget build(BuildContext context) {
+
     return Sizer(
       builder: (context, orientation, deviceType) {
         return Scaffold(
@@ -66,164 +200,194 @@ class Homepage extends StatelessWidget {
           body: Container(
             padding: EdgeInsets.all(20),
 
-            child: ListView(
+            child: Stack(
               children: [
-                Row(
+                ListView(
+                  controller: scrollController,
                   children: [
-                    Expanded(
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.search),
-                          hintText: "search",
-                          border: InputBorder.none,
-                          fillColor: Colors.grey[200],
-                          filled: true,
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.search),
+                              hintText: "search",
+                              border: InputBorder.none,
+                              fillColor: Colors.grey[200],
+                              filled: true,
+                            ),
+                          ),
                         ),
+                        Container(
+                          padding: EdgeInsets.only(left: 10),
+                          child: Builder(
+                            builder: (context) {
+                              return IconButton(
+                                onPressed: () {
+                                  Scaffold.of(context).openEndDrawer();
+                                },
+                                icon: Icon(Icons.menu, size: 35),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 2.h),
+                    Text(
+                      "Categories",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 27,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.only(left: 10),
-                      child: Builder(
-                        builder: (context) {
-                          return IconButton(
-                            onPressed: () {
-                              Scaffold.of(context).openEndDrawer();
-                            },
-                            icon: Icon(Icons.menu, size: 35),
+                      height: 150,
+                      child: ListView.builder(
+                        itemCount: categore.length,
+                        itemBuilder: (context, i) {
+                          return MaterialButton(
+                            onPressed: () {},
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                SizedBox(height: 2.h),
+                                Row(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.black,
+                                        borderRadius: BorderRadius.circular(100),
+                                      ),
+
+                                      height: 70,
+                                      width: 70,
+                                      alignment: Alignment.center,
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            categore[i]["iconname"],
+                                            size: 4.h,
+                                            color: Colors.white,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 1.h),
+                                Container(child: Text(categore[i]["title"])),
+                              ],
+                            ),
                           );
                         },
+                        scrollDirection: Axis.horizontal,
                       ),
                     ),
-                  ],
-                ),
-                SizedBox(height: 2.h),
-                Text(
-                  "Categories",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 27,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Container(
-                  height: 150,
-                  child: ListView.builder(
-                    itemCount: categore.length,
-                    itemBuilder: (context, i) {
-                      return MaterialButton(
-                        onPressed: () {},
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SizedBox(height: 2.h),
-                            Row(
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 10),
+                      child: Text(
+                        "best selling",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 27,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    GridView.builder(
+                      itemCount: selling.length,
+                      itemBuilder: (context, i) {
+                        return MaterialButton(
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => Itemdatels(data: selling[i]),
+                              ),
+                            );
+                          },
+                          child: Card(
+                            color: Color(0xFFFDFDFD),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.black,
-                                    borderRadius: BorderRadius.circular(100),
+                                  color: Color(0xFFF5F0F8),
+                                  child: Image.asset(
+                                    selling[i]["image"],
+                                    height: 120,
+                                    width: 200,
                                   ),
-
-                                  height: 70,
-                                  width: 70,
-                                  alignment: Alignment.center,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        categore[i]["iconname"],
-                                        size: 4.h,
-                                        color: Colors.white,
-                                      ),
-                                    ],
+                                ),
+                                Container(
+                                  alignment: Alignment.topLeft,
+                                  child: Text(
+                                    selling[i]["title"],
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  child: Text(
+                                    selling[i]["subtitle"],
+                                    style: TextStyle(color: Colors.grey),
+                                  ),
+                                ),
+                                Container(
+                                  alignment: Alignment.topLeft,
+                                  child: Text(
+                                    selling[i]["price"],
+                                    style: TextStyle(
+                                      color: Color(0xFFEBBD04),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
                                   ),
                                 ),
                               ],
                             ),
-                            SizedBox(height: 1.h),
-                            Container(child: Text(categore[i]["title"])),
-                          ],
-                        ),
-                      );
-                    },
-                    scrollDirection: Axis.horizontal,
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.symmetric(vertical: 10),
-                  child: Text(
-                    "best selling",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 27,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                GridView.builder(
-                  itemCount: selling.length,
-                  itemBuilder: (context, i) {
-                    return MaterialButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => Itemdatels(data: selling[i]),
                           ),
                         );
                       },
-                      child: Card(
-                        color: Color(0xFFFDFDFD),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              color: Color(0xFFF5F0F8),
-                              child: Image.asset(
-                                selling[i]["image"],
-                                height: 120,
-                                width: 200,
-                              ),
-                            ),
-                            Container(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                selling[i]["title"],
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              child: Text(
-                                selling[i]["subtitle"],
-                                style: TextStyle(color: Colors.grey),
-                              ),
-                            ),
-                            Container(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                selling[i]["price"],
-                                style: TextStyle(
-                                  color: Color(0xFFEBBD04),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisExtent: 220,
                       ),
-                    );
-                  },
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisExtent: 220,
-                  ),
+                    ),
+                  ],
                 ),
-              ],
+                Positioned(
+                  bottom: 2.h,
+                  left: 2.h,
+                  child: FloatingActionButton(
+                    backgroundColor: Colors.white,
+                    onPressed: () {
+                      if (asattop) {
+                        scrollController.animateTo(
+                            2000,
+                            duration: Duration(seconds: 1),
+                            curve: Curves.ease
+                        );
+                      } else {
+                        scrollController.animateTo(
+                            0,
+                            duration: Duration(seconds: 1),
+                            curve: Curves.ease
+                        );
+                      }
+                    },
+                    child: Icon(
+                      asattop ? Icons.arrow_circle_down_rounded : Icons.arrow_circle_up_rounded,
+                      size: 35,
+                      color: Colors.blue,
+                    )),)
+                    ]
             ),
           ),
         );

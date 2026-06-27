@@ -163,7 +163,7 @@ class _ItemdatelsState extends State<Itemdatels> {
             margin: EdgeInsets.symmetric(horizontal: 39.sp),
             child: MaterialButton(
               color: Colors.black,
-              onPressed: () {},
+              onPressed: () {Navigator.of(context).pushNamed("listgen");},
               child: Text("Add to cart", style: TextStyle(color: Colors.white)),
             ),
           ),

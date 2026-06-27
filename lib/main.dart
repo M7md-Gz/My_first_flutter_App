@@ -1,3 +1,4 @@
+import 'package:app6/ItemDatels.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'HomePage.dart';
@@ -21,7 +22,9 @@ class _MyAppState extends State<MyApp> {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           home: Homepage(),
-          routes: {"home": (context) => Homepage()},
+          routes: {"home": (context) => Homepage(),
+            "itemdatels":(context)=>Itemdatels()
+          },
         );
       },
     );
